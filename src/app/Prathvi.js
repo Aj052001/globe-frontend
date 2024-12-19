@@ -3,20 +3,6 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { MessageCircle, Repeat2, Heart } from 'lucide-react'; // For icons in tweet buttons
 import './style.css'
 import Globe from "./ajay.jsx";
-// Function to generate arcs data for the globe
-const generateArcsData = (N) => {
-  return [...Array(N).keys()].map(() => ({
-    startLat: (Math.random() - 0.5) * 180,
-    startLng: (Math.random() - 0.5) * 360,
-    endLat: (Math.random() - 0.5) * 180,
-    endLng: (Math.random() - 0.5) * 360,
-    color: [
-      ["#B43632", "#EEB649", "#CCD556"][Math.round(Math.random() * 2)],
-      ["#B43632", "#EEB649", "#CCD556"][Math.round(Math.random() * 2)],
-    ],
-  }));
-};
-
 
 
 

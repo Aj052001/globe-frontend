@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect, memo } from 'react';
 import {TrendingUp, GitBranch, DollarSign, Users, Award, MessageCircle, Heart, Repeat2, Rotate3dIcon } from 'lucide-react';
-import GlobeWithArcs from './Prathvi'
+// import GlobeWithArcs from './Prathvi'
+import dynamic from "next/dynamic";
+const GlobeWithArcs = dynamic(() => import('./Prathvi'), { ssr: false });
 
 
 

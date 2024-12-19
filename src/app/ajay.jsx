@@ -105,135 +105,72 @@ const Globe = React.memo(({ dataA, dataB, dataC, gitData, processedData }) => {
     },
   ];
 
-
   const [overviewData, setOverviewData] = useState(hardcodedData);
-const [isRealDataLoaded, setIsRealDataLoaded] = useState(false); // Track if real data is loaded
+  const [isRealDataLoaded, setIsRealDataLoaded] = useState(false); // Track if real data is loaded
 
-useEffect(() => {
-  const aggregateData = () => {
-    const cleanName = (name) =>
-      name
-        ?.replace(/\s*house\s*$/i, "")
-        .toLowerCase()
-        .trim();
+  useEffect(() => {
+    const aggregateData = () => {
+      const cleanName = (name) =>
+        name
+          ?.replace(/\s*house\s*$/i, "")
+          .toLowerCase()
+          .trim();
 
-    const houseMapping = {
-      sf: { name: "San Francisco", lat: 37.7749, lng: -122.4194 },
-      ny: { name: "New York", lat: 40.7128, lng: -74.006 },
-      bangalore: { name: "Bangalore", lat: 12.9716, lng: 77.5946 },
-      dubai: { name: "Dubai", lat: 25.276987, lng: 55.296249 },
+      const houseMapping = {
+        sf: { name: "San Francisco", lat: 37.7749, lng: -122.4194 },
+        ny: { name: "New York", lat: 40.7128, lng: -74.006 },
+        bangalore: { name: "Bangalore", lat: 12.9716, lng: 77.5946 },
+        dubai: { name: "Dubai", lat: 25.276987, lng: 55.296249 },
+      };
+
+      const grantsByHouse = dataB.reduce((acc, item) => {
+        const house = cleanName(item.home || item.house || "unknown");
+        acc[house] = (acc[house] || 0) + (item.grant || 0);
+        return acc;
+      }, {});
+
+      const investmentsByHouse = dataC.reduce((acc, item) => {
+        const house = cleanName(item.home || item.house || "unknown");
+        acc[house] = (acc[house] || 0) + (item.investment_size || 0);
+        return acc;
+      }, {});
+
+      const revenueByHouse = dataA.reduce((acc, item) => {
+        const house = cleanName(item.house || "unknown");
+        acc[house] = (acc[house] || 0) + (item.mrr || 0);
+        return acc;
+      }, {});
+
+      const aggregatedData = processedData.map((item) => {
+        const house = cleanName(item.house);
+        const houseInfo = houseMapping[house] || {
+          name: "Mumbai",
+          lat: 19.076,
+          lng: 72.8777,
+        };
+
+        return {
+          name: houseInfo.name,
+          lat: houseInfo.lat,
+          lng: houseInfo.lng,
+          applications: item.applications || 0,
+          grants: grantsByHouse[house] || 0,
+          investments: investmentsByHouse[house] || 0,
+          revenue: revenueByHouse[house] || 0,
+          color: "#0000ff",
+        };
+      });
+
+      setOverviewData(aggregatedData);
+      setIsRealDataLoaded(true); // Mark that real data is now loaded
     };
 
-    const grantsByHouse = dataB.reduce((acc, item) => {
-      const house = cleanName(item.home || item.house || "unknown");
-      acc[house] = (acc[house] || 0) + (item.grant || 0);
-      return acc;
-    }, {});
-
-    const investmentsByHouse = dataC.reduce((acc, item) => {
-      const house = cleanName(item.home || item.house || "unknown");
-      acc[house] = (acc[house] || 0) + (item.investment_size || 0);
-      return acc;
-    }, {});
-
-    const revenueByHouse = dataA.reduce((acc, item) => {
-      const house = cleanName(item.house || "unknown");
-      acc[house] = (acc[house] || 0) + (item.mrr || 0);
-      return acc;
-    }, {});
-
-    const aggregatedData = processedData.map((item) => {
-      const house = cleanName(item.house);
-      const houseInfo = houseMapping[house] || {
-        name: "Mumbai",
-        lat: 19.076,
-        lng: 72.8777,
-      };
-
-      return {
-        name: houseInfo.name,
-        lat: houseInfo.lat,
-        lng: houseInfo.lng,
-        applications: item.applications || 0,
-        grants: grantsByHouse[house] || 0,
-        investments: investmentsByHouse[house] || 0,
-        revenue: revenueByHouse[house] || 0,
-        color: "#0000ff",
-      };
-    });
-
-    setOverviewData(aggregatedData);
-    setIsRealDataLoaded(true); // Mark that real data is now loaded
-  };
-
-  if (!isRealDataLoaded && dataA && dataB && dataC && processedData) {
-    aggregateData();
-  }
-}, [dataA, dataB, dataC, processedData, isRealDataLoaded]);
-
-  // useEffect(() => {
-  //   const aggregateData = () => {
-  //     const cleanName = (name) =>
-  //       name
-  //         ?.replace(/\s*house\s*$/i, "")
-  //         .toLowerCase()
-  //         .trim();
-
-  //     const houseMapping = {
-  //       sf: { name: "San Francisco", lat: 37.7749, lng: -122.4194 },
-  //       ny: { name: "New York", lat: 40.7128, lng: -74.006 },
-  //       bangalore: { name: "Bangalore", lat: 12.9716, lng: 77.5946 },
-  //       dubai: { name: "Dubai", lat: 25.276987, lng: 55.296249 },
-  //     };
-
-  //     const grantsByHouse = dataB.reduce((acc, item) => {
-  //       const house = cleanName(item.home || item.house || "unknown");
-  //       acc[house] = (acc[house] || 0) + (item.grant || 0);
-  //       return acc;
-  //     }, {});
-
-  //     const investmentsByHouse = dataC.reduce((acc, item) => {
-  //       const house = cleanName(item.home || item.house || "unknown");
-  //       acc[house] = (acc[house] || 0) + (item.investment_size || 0);
-  //       return acc;
-  //     }, {});
-
-  //     const revenueByHouse = dataA.reduce((acc, item) => {
-  //       const house = cleanName(item.house || "unknown");
-  //       acc[house] = (acc[house] || 0) + (item.mrr || 0);
-  //       return acc;
-  //     }, {});
-
-  //     const aggregatedData = processedData.map((item) => {
-  //       const house = cleanName(item.house);
-  //       const houseInfo = houseMapping[house] || {
-  //         name: "Mumbai",
-  //         lat: 19.076,
-  //         lng: 72.8777,
-  //       };
-
-  //       return {
-  //         name: houseInfo.name,
-  //         lat: houseInfo.lat,
-  //         lng: houseInfo.lng,
-  //         applications: item.applications,
-  //         grants: grantsByHouse[house] || 0,
-  //         investments: investmentsByHouse[house] || 0,
-  //         revenue: revenueByHouse[house] || 0,
-  //         color: "#0000ff",
-  //       };
-  //     });
-
-  //     setOverviewData(aggregatedData);
-  //   };
-
-  //   if (dataA && dataB && dataC && processedData) {
-  //     aggregateData();
-  //   }
-  // }, [dataA, dataB, dataC, processedData]);
-
-
-  console.log(overviewData)
+    if (!isRealDataLoaded && dataA && dataB && dataC && processedData) {
+      aggregateData();
+    }
+  }, [dataA, dataB, dataC, processedData, isRealDataLoaded]);
+  
+  console.log(overviewData);
 
   useEffect(() => {
     const onWindowResize = () => {
@@ -375,7 +312,7 @@ useEffect(() => {
 
         // Convert lat/lng to 3D coordinates
         const { x, y, z } = Globe.getCoords(location.lat, location.lng);
-        marker.position.set(x+2, y+2, z+2);
+        marker.position.set(x + 2, y + 2, z + 2);
         marker.userData = { ...location, type: "marker" };
 
         scene.current.add(marker);
