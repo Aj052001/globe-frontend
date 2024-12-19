@@ -377,22 +377,22 @@ LeaderboardCard1.displayName = 'LeaderboardCard1';
                     {showRank ? item.resident : item.house}
                   </div>
                   <div className={`text-sm text-blue-400`}>
-                    {showRank ? item.house : item.applications}
+                   
                   </div>
                 </div>
               </div>
               <div className="text-right flex-shrink-0">
                 <div className="font-mono font-semibold text-gray-100 mb-1">
                   {typeof item.revenue === 'number' ? `$${item.revenue.toLocaleString()}` : item.revenue}
-                  {typeof item.change !== 'undefined' && (
+                  {typeof item.applications !== 'undefined' && (
                     <span
-                      className={`ml-2 text-sm ${item.change > 0 ? 'text-green-400' : 'text-red-400'}`}
+                      className={`ml-2 text-sm ${item.applications > 0 ? 'text-green-400' : 'text-red-400'}`}
                     >
-                      {item.change > 0 ? '↑' : '↓'} {Math.abs(item.change)}%
+                       {Math.abs(item.applications)}
                     </span>
                   )}
                 </div>
-                {showRank && <div className="text-sm text-gray-400">{item.applications}</div>}
+                
               </div>
             </div>
           ))}

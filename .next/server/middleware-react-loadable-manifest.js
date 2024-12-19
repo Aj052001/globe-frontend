@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"app/page.js -> ./Prathvi\":{\"id\":\"app/page.js -> ./Prathvi\",\"files\":[\"static/css/_app-pages-browser_src_app_Prathvi_js.css\",\"static/chunks/_app-pages-browser_src_app_Prathvi_js.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST="{}"
