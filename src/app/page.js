@@ -4,38 +4,6 @@ import React, { useState, useEffect, memo } from 'react';
 import {TrendingUp, GitBranch, DollarSign, Users, Award, MessageCircle, Heart, Repeat2, Rotate3dIcon } from 'lucide-react';
 import GlobeWithArcs from './Prathvi'
 
-  
-const HOUSE_COLORS = {
-  "Pioneer House": "text-blue-400",
-  "Innovator House": "text-purple-400",
-  "Creator House": "text-pink-400",
-  "Builder House": "text-orange-400",
-  "Maker House": "text-green-400",
-  "Founder House": "text-indigo-400",
-  "Visionary House": "text-red-400"
-};
-const SAMPLE_TWEETS = [
-  "Just launched a new project! 🚀",
-"Collaborating on an exciting initiative 🤝",
-"Made significant progress today 📈",
-"Working on something special ✨",
-"Great team meeting today! 💡",
-"Exploring new ideas for innovation 🌟",
-"Wrapping up a productive week! 🙌",
-];
-
-const STATIC_APPLICATIONS = [
-  { house: "Pioneer House", value: 523, detail: "Active Applications", change: 12 },
-  { house: "Innovator House", value: 1331, detail: "Active Applications", change: -5 },
-  { house: "Creator House", value: 481, detail: "Active Applications", change: 8 },
-  { house: "Builder House", value: 311, detail: "Active Applications", change: 3 },
-  { house: "Maker House", value: 704, detail: "Active Applications", change: -2 },
-  { house: "Founder House", value: 831, detail: "Active Applications", change: 6 },
-  { house: "Visionary House", value: 1391, detail: "Active Applications", change: 15 }
-];
-
-
-
 
 
 const LeaderboardCard = ({ title, data, showRank = true }) => {
@@ -97,7 +65,7 @@ const LeaderboardCard = ({ title, data, showRank = true }) => {
                 <div className="font-medium text-gray-100 mb-1">
                   {showRank ? item.name : item.house}
                 </div>
-                <div className={`text-sm ${HOUSE_COLORS[item.home]}`}>
+                <div className={`text-sm text-blue-400`}>
                   {showRank ? item.home : item.details}
                 </div>
               </div>
@@ -186,7 +154,7 @@ const LeaderboardCardI = ({ title, data, showRank = true }) => {
                 <div className="font-medium text-gray-100 mb-1">
                   {showRank ? item.name : item.home}
                 </div>
-                <div className={`text-sm ${HOUSE_COLORS[item.home]}`}>
+                <div className={`text-sm text-blue-400`}>
                   {showRank ? item.home : item.details}
                 </div>
               </div>
@@ -275,7 +243,7 @@ const LeaderboardCardH = ({ title, data, showRank = true }) => {
                 <div className="font-medium text-gray-100 mb-1">
                   {showRank ? item.name : item.house}
                 </div>
-                <div className={`text-sm ${HOUSE_COLORS[item.house]}`}>
+                <div className={`text-sm text-blue-400`}>
                   {showRank ? item.house : item.details}
                 </div>
               </div>
@@ -345,7 +313,7 @@ const LeaderboardCard1 = ({ title, data, showRank = true }) => {
                 <div className="font-medium text-gray-100 mb-1">
                   {showRank ? item.resident : item.house}
                 </div>
-                <div className={`text-sm ${HOUSE_COLORS[item.house]}`}>
+                <div className={`text-sm text-blue-400`}>
                   {showRank ? item.house : item.detail}
                 </div>
               </div>
@@ -406,7 +374,7 @@ LeaderboardCard1.displayName = 'LeaderboardCard1';
                   <div className="font-medium text-gray-100 mb-1">
                     {showRank ? item.resident : item.house}
                   </div>
-                  <div className={`text-sm ${HOUSE_COLORS[item.house]}`}>
+                  <div className={`text-sm text-blue-400`}>
                     {showRank ? item.house : item.applications}
                   </div>
                 </div>
