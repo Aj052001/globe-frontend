@@ -276,7 +276,7 @@ const LeaderboardCardH = ({ title, data, showRank = true }) => {
                   {showRank ? item.name : item.house}
                 </div>
                 <div className={`text-sm ${HOUSE_COLORS[item.house]}`}>
-                  {showRank ? item.house : item.details}/get_saved_data
+                  {showRank ? item.house : item.details}
                 </div>
               </div>
             </div>
@@ -481,7 +481,7 @@ export default function DashboardDemo() {
       grants: 'https://script.google.com/macros/s/AKfycbwAqODJ3NiFHauESgiMW65R2ZQMxJSWWtATrDPsl0YFW9H1zfEUxO704LaJ5m1ls7ea/exec',
       investments: 'https://script.google.com/macros/s/AKfycbyhrfgCioo_nVlG4rG7NcQ2oBKfV5ZCAiyg4v0BHOAsSemwKDBLoY2IPfnaxPWJh5GlkA/exec',
       houses:"https://script.googleusercontent.com/macros/echo?user_content_key=yawgMUS-uaIkd004IryvhN9GHffMhci-DKAf6R-5_f6lEDiA8y9WtSuJMeyWIHuAvyIX7B14w6gRcIadzZtDL302RlAfwQlpm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNPEugizz5HSeF_ttZuLgpWwLpxgsEw7rR4meR5_67XptVCgKPgonMioIYdmfER9kIhC2x9LEUuyC_FnVo9zHNE2yrPrPF3qgtz9Jw9Md8uu&lib=MpWCmBbv8BIEZ-C71fGN3YX7dSxyY7qhE",
-     git:`${API_URL}/get_saved_data`,
+     git:`${API_URL}/scrape_multiple_github`,
      hackathon:"https://script.google.com/macros/s/AKfycbwfWGuG897p8G4wtEbSNRZypFrL5cK-Y5JA9ggHFsm2aUmQWSmrepc86Tb1rwhl0-_DXQ/exec"
 
     };
