@@ -172,7 +172,9 @@ const Globe = React.memo(({ dataA, dataB, dataC, gitData, processedData }) => {
   
   console.log(overviewData);
 
-  useEffect(() => {
+  useEffect(() => {if (typeof window !== "undefined") {
+
+    
     const onWindowResize = () => {
       const container = globeRef.current;
       if (container) {
@@ -362,7 +364,7 @@ const Globe = React.memo(({ dataA, dataB, dataC, gitData, processedData }) => {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("click", onMouseClick); // Unsubscribe click listener
     };
-  }, []);
+  }}, []);
 
   // Popup component
   const LocationPopup = () => {
